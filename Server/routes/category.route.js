@@ -1,8 +1,13 @@
-const categoryController=require("../controller/category.controller")
-const { verifyToken } = require("../middleware/auth")
-const router=require("express").Router()
+const categoryController = require("../controller/category.controller");
+const { verifyToken, isAdmin, isUser } = require("../middleware/auth");
+const router = require("express").Router();
 
-router.route("/")
-.post(verifyToken,categoryController.store)
+router
+  .route("/")
+  .post(verifyToken, categoryController.store)
+  .get(verifyToken, categoryController.index);
 
-module.exports=router
+router
+.route("/:id").delete(verifyToken, categoryController.trash);
+
+module.exports = router;

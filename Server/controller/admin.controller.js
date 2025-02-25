@@ -30,6 +30,7 @@ exports.signup = async (req, res) => {
 };
 
 exports.login = async (req, res) => {
+  // console.log(req.body)
   try {
     const { a_email, a_password } = req.body;
     const existAdmin = await Admin.findOne({ a_email });
